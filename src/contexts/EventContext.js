@@ -12,7 +12,6 @@ export const EventProvider = ({ children }) => {
       const querySnapshot = await getDocs(collection(db, 'events'));
       const eventData = [];
       querySnapshot.forEach(doc => {
-        console.log(doc.data());
         eventData.push({ id: doc.id, ...doc.data() });
       });
       setEvents(eventData);
