@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { loadFiltersFromStorage, saveFiltersToStorage } from '../utils/storageUtils';
+import React, { createContext, useState, useEffect } from "react";
+import { loadFiltersFromStorage, saveFiltersToStorage } from "../utils/storageUtils";
 
 export const FilterContext = createContext();
 
@@ -10,9 +10,5 @@ export const FilterProvider = ({ children }) => {
     saveFiltersToStorage(filters);
   }, [filters]);
 
-  return (
-    <FilterContext.Provider value={{ filters, setFilters }}>
-      {children}
-    </FilterContext.Provider>
-  );
+  return <FilterContext.Provider value={{ filters, setFilters }}>{children}</FilterContext.Provider>;
 };

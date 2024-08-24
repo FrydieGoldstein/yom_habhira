@@ -1,14 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import theme from './theme';
-import { ThemeProvider } from '@mui/material/styles';
-import { EventProvider } from './contexts/EventContext';
-import { TagsProvider } from './contexts/TagsContext';
-import { FilterProvider } from './contexts/FilterContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import theme from "./theme";
+import { ThemeProvider } from "@mui/material/styles";
+import { EventProvider } from "./contexts/EventContext";
+import { TagsProvider } from "./contexts/TagsContext";
+import { FilterProvider } from "./contexts/FilterContext";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
@@ -21,5 +20,5 @@ root.render(
         </TagsProvider>
       </EventProvider>
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
