@@ -14,8 +14,8 @@ import LanguageFilterDrawer from "../filters/LanguageFilterDrawer";
 import { TimeSlot } from "../constants/enums";
 import AppBarMobile from "../components/main_screen/mobile/AppBarMobile";
 import AppBarDesktop from "../components/main_screen/AppBarDesktop";
-import SearchBar from "../components/main_screen/SearchBar";
-import FilterButtons from "../components/main_screen/FilterButtons";
+// import SearchBar from "../components/main_screen/SearchBar";
+// import FilterButtons from "../components/main_screen/FilterButtons";
 import EventListDesktop from "../components/main_screen/EventListDesktop";
 import EventListMobile from "../components/main_screen/mobile/EventListMobile";
 
