@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { APIProvider } from "@vis.gl/react-google-maps";
 import MapComponent from "../components/MapComponent";
-import EventTile from "../components/EventTile";
+import EventTileMobile from "../components/main_screen/mobile/EventTileMobile";
 import { Box, Grid, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import EventTileDesktop from "../components/main_screen/EventTileDesktop";
@@ -26,7 +26,7 @@ const MapView = ({ events }) => {
         {selectedEvent && (
           <div style={{ position: "absolute", top: "20%", right: "10%", zIndex: 1000 }}>
             {isMobile ? (
-              <EventTile eventId={selectedEvent.id} />
+              <EventTileMobile eventId={selectedEvent.id} />
             ) : (
               <Grid item width={250}>
                 <EventTileDesktop eventId={selectedEvent.id} />
