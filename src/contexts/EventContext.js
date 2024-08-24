@@ -1,6 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
-import db from '../firebaseConfig';
-import { collection, getDocs } from 'firebase/firestore';
+import React, { createContext, useState, useEffect } from "react";
+import db from "../firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
 
 export const EventContext = createContext();
 
@@ -9,9 +9,9 @@ export const EventProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const querySnapshot = await getDocs(collection(db, 'events'));
+      const querySnapshot = await getDocs(collection(db, "events"));
       const eventData = [];
-      querySnapshot.forEach(doc => {
+      querySnapshot.forEach((doc) => {
         eventData.push({ id: doc.id, ...doc.data() });
       });
       setEvents(eventData);
@@ -21,9 +21,5 @@ export const EventProvider = ({ children }) => {
     fetchEvents();
   }, []);
 
-  return (
-    <EventContext.Provider value={{ events, setEvents }}>
-      {children}
-    </EventContext.Provider>
-  );
+  return <EventContext.Provider value={{ events, setEvents }}>{children}</EventContext.Provider>;
 };
