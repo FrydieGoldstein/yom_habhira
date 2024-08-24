@@ -9,7 +9,7 @@ function YouTubePlayer({ videoId }) {
   const checkLiveStatus = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails&id=${videoId}&key=AIzaSyCz48-DyeEnK7Xyf_cZySBuM-wrNVM1se8`,
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails&id=${videoId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
       );
       const data = await response.json();
       const videoDetails = data.items[0];
