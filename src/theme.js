@@ -12,14 +12,14 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Rubik",
+    fontFamily: "Rubik, sans-serif",
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
           fontFamily: "Roboto",
-          fontSize: "11px",
+          fontSize: "12px",
           color: "#3F1E5B",
           backgroundColor: "#F2DEDD",
           borderRadius: "15px",
@@ -27,6 +27,7 @@ const theme = createTheme({
           minWidth: "2px",
           boxShadow: "0px 4px 3px rgba(0, 0, 0, 0.1)",
           margin: "3px",
+          textTransform: "none",
         },
         contained: {
           backgroundColor: "#FFDD13",
@@ -40,22 +41,6 @@ const theme = createTheme({
         },
       },
     },
-    // MuiChip: {
-    //   styleOverrides: {
-    //     root: {
-    //       fontFamily: "Roboto, sans-serif",
-    //       fontSize: "11px",
-    //       color: "#3F1E5B",
-    //       backgroundColor: "#F2DEDD",
-    //       borderRadius: "15px",
-    //       minWidth: "auto",
-    //       height: "auto",
-    //       padding: "5px 2px",
-    //       boxShadow: "0px 4px 3px rgba(0, 0, 0, 0.1)",
-    //       margin: "3px",
-    //     },
-    //   },
-    // },
   },
 });
 

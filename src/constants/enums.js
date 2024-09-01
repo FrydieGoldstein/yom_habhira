@@ -27,26 +27,25 @@ export const Language = {
   english: "אנגלית",
 };
 
-export const Cities = {
-  TELAVIV: "תל אביב",
-  JERUSALEM: "ירושלים",
-  RAMATGAN: "רמת גן",
-  AFULA: "עפולה",
-  EILAT: "אילת",
-  GEDERA: "גדרה",
-  KIRYATSHEMONA: "קרית שמונה",
-  HERZLIYA: "הרצליה",
-  HANATON: "קיבוץ חנתון",
-};
+// export const Cities = {
+//   TELAVIV: "תל אביב",
+//   JERUSALEM: "ירושלים",
+//   RAMATGAN: "רמת גן",
+//   AFULA: "עפולה",
+//   EILAT: "אילת",
+//   GEDERA: "גדרה",
+//   KIRYATSHEMONA: "קרית שמונה",
+//   HERZLIYA: "הרצליה",
+//   HANATON: "קיבוץ חנתון",
+// };
 
-export const Countries = {
-  // ISRAEL: "ישראל",
-  USA: 'ארה"ב',
-  THAILAND: "תאילנד",
-  ENGLAND: "אנגליה",
-  FRANCE: "צרפת",
-  CANADA: "קנדה",
-};
+// export const Countries = {
+//   USA: 'ארה"ב',
+//   THAILAND: "תאילנד",
+//   ENGLAND: "אנגליה",
+//   FRANCE: "צרפת",
+//   CANADA: "קנדה",
+// };
 
 export const TimeSlot = {
   fridayMorning: "7:00 - 13:00",

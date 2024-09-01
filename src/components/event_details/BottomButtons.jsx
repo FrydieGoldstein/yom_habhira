@@ -48,7 +48,12 @@ const BottomButtons = ({ eventId }) => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-around", alignSelf: "stretch" }}>
-      <Button variant="outlined" onClick={handleOpen} startIcon={<ShareOutlinedIcon style={{ fontSize: "14px" }} />} sx={{ gap: 1 }}>
+      <Button
+        variant="outlined"
+        onClick={handleOpen}
+        startIcon={<ShareOutlinedIcon style={{ fontSize: "14px" }} />}
+        sx={{ gap: 1, fontSize: "13px" }}
+      >
         שיתוף אירוע
       </Button>
       <Dialog dir="rtl" open={open} onClose={handleClose}>
@@ -75,7 +80,12 @@ const BottomButtons = ({ eventId }) => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Button variant="contained" onClick={handleAddToGoogleCalendar} startIcon={<ViewListIcon style={{ fontSize: "16px" }} />} sx={{ gap: 1 }}>
+      <Button
+        variant="contained"
+        onClick={handleAddToGoogleCalendar}
+        startIcon={<ViewListIcon style={{ fontSize: "18px" }} />}
+        sx={{ gap: 1, fontSize: "13px" }}
+      >
         הוספה ליומן
       </Button>
     </Box>

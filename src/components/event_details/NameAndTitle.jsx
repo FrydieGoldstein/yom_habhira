@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton, responsiveFontSizes } from "@mui/material";
 import { EventContext } from "../../contexts/EventContext";
 import { SocialMediaIcons } from "../../constants/enums";
+import { BATCH_SIZE } from "marker-clusterer-plus";
 
 const NameAndTitle = ({ eventId }) => {
   const { events } = useContext(EventContext);
@@ -24,9 +25,9 @@ const NameAndTitle = ({ eventId }) => {
           href={event.lecturer.socialMediaLinks[key]}
           target="_blank"
           rel="noopener noreferrer"
-          sx={{ padding: 0.2 }}
+          style={{ padding: 0.2 }}
         >
-          <IconComponent fontSize="small" />
+          <IconComponent style={{ fontSize: "16px" }} />
         </IconButton>
       );
     }
@@ -34,13 +35,7 @@ const NameAndTitle = ({ eventId }) => {
   });
 
   return (
-    <Box
-      //  border={1}
-      minHeight="30px"
-      display="flex"
-      flexDirection="row"
-      maxHeight="120px"
-    >
+    <Box minHeight="30px" display="flex" flexDirection="row" gap="10px" maxHeight="120px" width="100%">
       <Box
         // border={1}
         // borderColor="blue"
@@ -48,7 +43,7 @@ const NameAndTitle = ({ eventId }) => {
         flexDirection="column"
         justifyContent="space-between"
         alignItems="center"
-        flexGrow={1}
+        // flexGrow={1}
         maxWidth="90px"
       >
         <Box
@@ -57,8 +52,8 @@ const NameAndTitle = ({ eventId }) => {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          width="50px"
-          height="50px"
+          width="40x"
+          height="40px"
           sx={{
             overflow: "hidden",
             borderRadius: "50%",
@@ -92,18 +87,20 @@ const NameAndTitle = ({ eventId }) => {
         flexGrow={1}
       >
         <Typography
-          variant="h3"
           sx={{
-            mt: "-0.25em", // מוריד את הטקסט קצת למעלה
-            lineHeight: "normal", // ניתן לשחק עם ערך זה כדי ליישר לפי הגובה הרגיל
+            fontWeight: 500,
+            fontSize: "22px",
+            // mt: "-0.25em", // מוריד את הטקסט קצת למעלה
+            // lineHeight: "normal", // ניתן לשחק עם ערך זה כדי ליישר לפי הגובה הרגיל
           }}
         >
           {event.lecturer.name.hebrew}
         </Typography>
         <Typography
-          variant="h5"
           sx={{
-            mb: "-0.1em", // מקטין את המרווח התחתון של הטקסט
+            fontWeight: "450",
+            fontSize: "16px",
+            // mb: "-0.3em", // מקטין את המרווח התחתון של הטקסט
             // lineHeight: "normal", // ניתן לשחק עם ערך זה כדי ליישר לפי הגובה הרגיל
           }}
         >

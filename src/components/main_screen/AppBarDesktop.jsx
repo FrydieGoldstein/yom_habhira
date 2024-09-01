@@ -1,10 +1,11 @@
 import React from "react";
 import { AppBar, Toolbar, IconButton, InputBase, Button, Grid, Box, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import GBFlag from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/assets/gb-flag.png";
-import ILFlag from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/assets/il-flag.png";
+import LanguageToggle from "../LanguageToggle";
+import { useLanguage } from "../../contexts/LanguageContext";
 
-const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter, handleLanguageToggle, language }) => {
+const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter }) => {
+  const { translations } = useLanguage();
   return (
     <AppBar position="fixed" color="default">
       <Toolbar>
@@ -19,7 +20,7 @@ const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter, handleLang
           <Box display="flex" justifyContent="center" alignItems="center" width="60%">
             <InputBase
               // width="100%"
-              placeholder="  חיפוש לפי: שם, כתובת, נושא..."
+              placeholder={translations.searchPlaceholder}
               inputProps={{ "aria-label": "search" }}
               value={searchQuery}
               onChange={handleSearch}
@@ -40,17 +41,15 @@ const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter, handleLang
               }}
             />
             <Box display="flex">
-              <Button onClick={() => handleOpenFilter("נושאי שיחה")}>נושאי שיחה</Button>
-              <Button onClick={() => handleOpenFilter("זמן")}>זמן</Button>
-              <Button onClick={() => handleOpenFilter("מיקום")}>מיקום</Button>
-              <Button onClick={() => handleOpenFilter("שפת הרצאה")}>שפת הרצאה</Button>
+              <Button onClick={() => handleOpenFilter(translations.topics)}>{translations.topics}</Button>
+              <Button onClick={() => handleOpenFilter(translations.time)}>{translations.time}</Button>
+              <Button onClick={() => handleOpenFilter(translations.location)}>{translations.location}</Button>
+              <Button onClick={() => handleOpenFilter(translations.language)}>{translations.language}</Button>
             </Box>
           </Box>
           <Box display="flex" justifyContent="end" width="150px">
             {/* לבדוק את העניין עם הרוחב אם להוסיף גם ללוגו */}
-            <IconButton onClick={handleLanguageToggle} aria-label="language-toggle">
-              <img src={language === "en" ? GBFlag : ILFlag} alt="language flag" style={{ height: 20, width: 25 }} />
-            </IconButton>
+            <LanguageToggle />
           </Box>
         </Box>
       </Toolbar>

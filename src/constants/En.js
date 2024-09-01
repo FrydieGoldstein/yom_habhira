@@ -1,0 +1,18 @@
+export const en = {
+  searchPlaceholder: "Search by: Name, Address, Title...",
+  topics: "Topics",
+  time: "Time",
+  location: "Location",
+  language: "Language",
+  map: "Map",
+  list: "List",
+  filterBy: "Filter by",
+  clear: "Clear selection",
+  apply: "Apply",
+  friday: "Friday",
+  saturday: "Saturday",
+  israel: "Israel",
+  restOfTheWorld: "Rest of the world",
+  hebrew: "Hebrew",
+  english: "English",
+};
