@@ -2,8 +2,9 @@ import { min } from "date-fns";
 import React, { useState, useEffect, useCallback } from "react";
 import { Box } from "@mui/material";
 import YouTube from "react-youtube";
+import { alignProperty } from "@mui/material/styles/cssUtils";
 
-function YouTubePlayer({ videoId }) {
+function YouTubePlayer({ videoId, isMobile = false }) {
   const [playerStatus, setPlayerStatus] = useState("loading");
 
   const checkLiveStatus = useCallback(async () => {
@@ -57,8 +58,11 @@ function YouTubePlayer({ videoId }) {
   }
 
   const opts = {
-    height: "280px !important",
-    width: "498px !important",
+    height: isMobile ? "170px" : "280px",
+    width: isMobile ? "302px" : "498px",
+    // alignProperty: "center",
+    // height: "140px",
+    // width: "249px",
     playerVars: {
       autoplay: 1,
       controls: 1,

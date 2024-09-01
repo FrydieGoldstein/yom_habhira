@@ -17,20 +17,20 @@ const TimeAndAddress = ({ eventId }) => {
   const { formattedDate: startFormattedDate, formattedTime: startFormattedTime } = useFormattedDate(event.startTime);
 
   return (
-    <Box>
-      <Box display="flex" flexDirection="row" alignItems="center" gap="20px" paddingBottom="10px">
+    <Box display="flex" flexDirection="column" gap="9px">
+      <Box display="flex" flexDirection="row" alignItems="center" gap="20px">
         <Box display="flex" flexDirection="row" alignItems="center" gap="5px">
-          <ScheduleIcon sx={{ fontSize: 15, opacity: 0.7 }} />
-          <Typography fontSize="13px">{startFormattedTime}</Typography>
+          <ScheduleIcon sx={{ fontSize: "22px", opacity: 0.7 }} />
+          <Typography fontSize="18px">{startFormattedTime}</Typography>
         </Box>
         <Box display="flex" flexDirection="row" alignItems="center" gap="5px">
-          <CalendarTodayOutlinedIcon sx={{ fontSize: 13, opacity: 0.7 }} />
-          <Typography fontSize="13px"> {startFormattedDate}</Typography>
+          <CalendarTodayOutlinedIcon sx={{ fontSize: "18px", opacity: 0.7 }} />
+          <Typography fontSize="18px"> {startFormattedDate}</Typography>
         </Box>
       </Box>
       <Box display="flex" flexDirection="row" alignItems="center" gap="4px">
-        <PlaceOutlinedIcon sx={{ fontSize: 17, opacity: 0.6, marginRight: "-1.1px" }} />
-        <Typography fontSize="13px">
+        <PlaceOutlinedIcon sx={{ fontSize: "24px", opacity: 0.6, marginRight: "-1.1px" }} />
+        <Typography fontSize="18px">
           {event.address.street.hebrew} {event.address.number}, {event.address.city.hebrew}
         </Typography>
       </Box>

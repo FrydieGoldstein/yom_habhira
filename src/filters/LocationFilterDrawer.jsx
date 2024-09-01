@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useMemo, useContext } from "react";
 import { Button, Box, Checkbox, FormControlLabel } from "@mui/material";
-import { Cities, Countries } from "../constants/enums";
+import { useLanguage } from "../contexts/LanguageContext";
+import { EventContext } from "../contexts/EventContext";
 
 const LocationFilterDrawer = ({ onLocationChange, selectedLocation }) => {
   selectedLocation = selectedLocation || [];
+
+  const { events } = useContext(EventContext);
+
+  const { translations, lang } = useLanguage();
+
+  const { cities, countries } = useMemo(() => {
+    const citiesSet = new Set();
+    const countriesSet = new Set();
+
+    events.forEach((event) => {
+      if (event.address.country[lang] === translations.israel) {
+        citiesSet.add(event.address.city[lang]);
+      } else {
+        countriesSet.add(event.address.country[lang]);
+      }
+    });
+
+    return {
+      cities: Array.from(citiesSet).sort(),
+      countries: Array.from(countriesSet).sort(),
+    };
+  }, [events, lang, translations]);
 
   const handleToggle = (location) => {
     const newSelectedLocations = selectedLocation.includes(location)
@@ -13,79 +36,73 @@ const LocationFilterDrawer = ({ onLocationChange, selectedLocation }) => {
   };
 
   const handleSelectAllCities = () => {
-    let newSelectedLocations = [...selectedLocation];
-    const cityKeys = Object.keys(Cities);
-
-    const allCitiesSelected = cityKeys.every((city) => selectedLocation.includes(city));
-    if (allCitiesSelected) {
-      newSelectedLocations = newSelectedLocations.filter((loc) => !cityKeys.includes(loc));
-    } else {
-      newSelectedLocations = [...new Set([...newSelectedLocations, ...cityKeys])];
-    }
+    const allCitiesSelected = cities.every((city) => selectedLocation.includes(city));
+    const newSelectedLocations = allCitiesSelected
+      ? selectedLocation.filter((loc) => !cities.includes(loc))
+      : [...new Set([...selectedLocation, ...cities])];
 
     onLocationChange(newSelectedLocations);
   };
 
   const handleSelectAllCountries = () => {
-    let newSelectedLocations = [...selectedLocation];
-    const countryKeys = Object.keys(Countries);
-
-    const allCountriesSelected = countryKeys.every((country) => selectedLocation.includes(country));
-    if (allCountriesSelected) {
-      newSelectedLocations = newSelectedLocations.filter((loc) => !countryKeys.includes(loc));
-    } else {
-      newSelectedLocations = [...new Set([...newSelectedLocations, ...countryKeys])];
-    }
+    const allCountriesSelected = countries.every((country) => selectedLocation.includes(country));
+    const newSelectedLocations = allCountriesSelected
+      ? selectedLocation.filter((loc) => !countries.includes(loc))
+      : [...new Set([...selectedLocation, ...countries])];
 
     onLocationChange(newSelectedLocations);
   };
 
-  const allCitiesSelected = Object.keys(Cities).every((city) => selectedLocation.includes(city));
-  const allCountriesSelected = Object.keys(Countries).every((country) => selectedLocation.includes(country));
+  const allCitiesSelected = cities.every((city) => selectedLocation.includes(city));
+  const allCountriesSelected = countries.every((country) => selectedLocation.includes(country));
 
   return (
     <Box display="flex" alignItems="flex-start" flexDirection="column" sx={{ width: "auto", padding: 2 }}>
-      <FormControlLabel control={<Checkbox checked={allCitiesSelected} onChange={handleSelectAllCities} />} label="ישראל" sx={{ marginBottom: 2 }} />
+      <FormControlLabel
+        control={<Checkbox checked={allCitiesSelected} onChange={handleSelectAllCities} />}
+        label={translations.israel}
+        sx={{ marginBottom: 2 }}
+      />
       <Box sx={{ width: "auto", padding: 2 }}>
-        {Object.entries(Cities).map(([key, value]) => (
+        {cities.map((city) => (
           <Button
-            key={key}
-            onClick={() => handleToggle(key)}
+            key={city}
+            onClick={() => handleToggle(city)}
             variant="outlined"
             sx={{
               margin: 1,
-              backgroundColor: selectedLocation.includes(key) ? "secondary.main" : "inherit",
-              color: selectedLocation.includes(key) ? "white" : "inherit",
+              backgroundColor: selectedLocation.includes(city) ? "secondary.main" : "inherit",
+              color: selectedLocation.includes(city) ? "white" : "inherit",
               "&:hover": {
-                backgroundColor: selectedLocation.includes(key) ? "secondary.main" : "inherit",
+                backgroundColor: selectedLocation.includes(city) ? "secondary.main" : "inherit",
               },
             }}
           >
-            {value}
+            {city}
           </Button>
         ))}
       </Box>
       <FormControlLabel
         control={<Checkbox checked={allCountriesSelected} onChange={handleSelectAllCountries} />}
-        label="שאר העולם"
+        label={translations.restOfTheWorld}
         sx={{ marginY: 2 }}
       />
       <Box sx={{ width: "auto", padding: 2 }}>
-        {Object.entries(Countries).map(([key, value]) => (
+        {countries.map((country) => (
           <Button
-            key={key}
-            onClick={() => handleToggle(key)}
+            key={country}
+            onClick={() => handleToggle(country)}
             variant="outlined"
             sx={{
               margin: 1,
-              backgroundColor: selectedLocation.includes(key) ? "secondary.main" : "inherit",
-              color: selectedLocation.includes(key) ? "white" : "inherit",
+              backgroundColor: selectedLocation.includes(country) ? "secondary.main" : "inherit",
+              color: selectedLocation.includes(country) ? "white" : "inherit",
               "&:hover": {
-                backgroundColor: selectedLocation.includes(key) ? "secondary.main" : "inherit",
+                backgroundColor: selectedLocation.includes(country) ? "secondary.main" : "inherit",
               },
             }}
           >
-            {value}
+            {country}
           </Button>
         ))}
       </Box>

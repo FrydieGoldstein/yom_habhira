@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Box } from "@mui/material";
-import { Language } from "../constants/enums";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const LanguageFilterDrawer = ({ onLanguageChange, selectedLanguage }) => {
+  const { translations } = useLanguage();
+
   const handleToggle = (language) => {
     const newSelectedLanguages = selectedLanguage.includes(language)
       ? selectedLanguage.filter((lang) => lang !== language)
@@ -12,7 +14,7 @@ const LanguageFilterDrawer = ({ onLanguageChange, selectedLanguage }) => {
 
   return (
     <Box sx={{ width: "auto", padding: 2 }}>
-      {Object.entries(Language).map(([key, value]) => (
+      {["hebrew", "english"].map((key) => (
         <Button
           key={key}
           onClick={() => handleToggle(key)}
@@ -26,7 +28,7 @@ const LanguageFilterDrawer = ({ onLanguageChange, selectedLanguage }) => {
             },
           }}
         >
-          {value}
+          {translations[key]} {/* הצגת התווית המתורגמת */}
         </Button>
       ))}
     </Box>

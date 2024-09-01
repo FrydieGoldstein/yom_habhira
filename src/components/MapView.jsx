@@ -24,14 +24,16 @@ const MapView = ({ events }) => {
       <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
         <MapComponent events={events} onMarkerClick={onMarkerClick} onMapClick={onMapClick} />
         {selectedEvent && (
-          <div style={{ position: "absolute", top: "20%", right: "10%", zIndex: 1000 }}>
-            {isMobile ? (
-              <EventTileMobile eventId={selectedEvent.id} />
-            ) : (
-              <Grid item width={250}>
-                <EventTileDesktop eventId={selectedEvent.id} />
-              </Grid>
-            )}
+          <div
+            style={{
+              position: "absolute",
+              top: isMobile ? "75%" : "20%",
+              right: isMobile ? "5%" : "10%",
+              zIndex: 1000,
+              width: isMobile ? "300px" : "250px",
+            }}
+          >
+            {isMobile ? <EventTileMobile eventId={selectedEvent.id} /> : <EventTileDesktop eventId={selectedEvent.id} />}
           </div>
         )}
       </div>
