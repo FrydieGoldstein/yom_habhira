@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Box, Chip, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { EventContext } from "../../contexts/EventContext";
-// import { useTheme } from "@mui/material";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const Tags = ({ eventId }) => {
   const { events } = useContext(EventContext);
   const event = events.find((e) => e.id === eventId);
-  // const theme = useTheme();
+  const { lang } = useLanguage();
 
   if (!event) {
     return <div>Event not found</div>;
@@ -15,13 +15,8 @@ const Tags = ({ eventId }) => {
   return (
     <div>
       {event.tags.map((tag, index) => (
-        // <Chip
-        //   key={index}
-        //   label={tag.title.hebrew}
-        //   // sx={{ marginLeft: 1 }}
-        // />
         <Button key={index} onClick={() => console.log("clicked")}>
-          {tag.title.hebrew}
+          {tag.title[lang]}
         </Button>
       ))}
     </div>

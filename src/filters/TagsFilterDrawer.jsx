@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { TagsContext } from "../contexts/TagsContext";
 import { Button, Box } from "@mui/material";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const TagsFilterDrawer = ({ onTagsChange, selectedTags }) => {
   const { tags } = useContext(TagsContext);
+  const { lang } = useLanguage();
   const handleToggle = (tagId) => {
     const newSelectedTags = selectedTags.includes(tagId) ? selectedTags.filter((id) => id !== tagId) : [...selectedTags, tagId];
     onTagsChange(newSelectedTags);
@@ -25,7 +27,7 @@ const TagsFilterDrawer = ({ onTagsChange, selectedTags }) => {
             },
           }}
         >
-          {tag.title.hebrew}
+          {tag.title[lang]}
         </Button>
       ))}
     </Box>

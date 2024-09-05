@@ -1,8 +1,11 @@
 import React from "react";
 import { AppBar, Toolbar, IconButton, InputBase, Button, Grid, InputAdornment, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useLanguage } from "../../../contexts/LanguageContext";
+import LanguageToggle from "../../LanguageToggle";
 
 const AppBarMobile = ({ searchQuery, handleSearch, handleOpenFilter }) => {
+  const { translations, lang } = useLanguage();
   return (
     <AppBar position="fixed" color="default">
       <Toolbar>
@@ -18,24 +21,26 @@ const AppBarMobile = ({ searchQuery, handleSearch, handleOpenFilter }) => {
             </IconButton>
           </Box>
           <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between" rowGap="8px">
-            <InputBase
-              fullWidth
-              placeholder="   חיפוש אירוע לפי: שם, כתובת, נושא..."
-              inputProps={{ "aria-label": "search" }}
-              value={searchQuery}
-              onChange={handleSearch}
-              startAdornment={
-                <InputAdornment position="start">
-                  <SearchIcon fontSize="small" />
-                </InputAdornment>
-              }
-              sx={{
-                border: "1px solid",
-                padding: "5px 10px",
-                borderRadius: "20px",
-                fontSize: "12px",
-              }}
-            />
+            <Box display="flex" gap="10px">
+              <InputBase
+                placeholder={translations.searchPlaceholder}
+                inputProps={{ "aria-label": "search" }}
+                value={searchQuery}
+                onChange={handleSearch}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon fontSize="small" />
+                  </InputAdornment>
+                }
+                sx={{
+                  border: "1px solid",
+                  padding: "5px 10px",
+                  borderRadius: "20px",
+                  fontSize: "12px",
+                }}
+              />
+              <LanguageToggle />
+            </Box>
             <Box
               sx={{
                 width: "100%",
@@ -45,10 +50,10 @@ const AppBarMobile = ({ searchQuery, handleSearch, handleOpenFilter }) => {
                 mb: "8px",
               }}
             >
-              <Button onClick={() => handleOpenFilter("נושאי שיחה")}>נושאי שיחה</Button>
-              <Button onClick={() => handleOpenFilter("זמן")}>זמן</Button>
-              <Button onClick={() => handleOpenFilter("מיקום")}>מיקום</Button>
-              <Button onClick={() => handleOpenFilter("שפת הרצאה")}>שפת הרצאה</Button>
+              <Button onClick={() => handleOpenFilter(translations.topics)}>{translations.topics}</Button>
+              <Button onClick={() => handleOpenFilter(translations.time)}>{translations.time}</Button>
+              <Button onClick={() => handleOpenFilter(translations.location)}>{translations.location}</Button>
+              <Button onClick={() => handleOpenFilter(translations.language)}>{translations.language}</Button>
             </Box>
           </Box>
         </Box>

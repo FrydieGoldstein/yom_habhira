@@ -4,14 +4,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const FilterDrawer = ({ open, onClose, title, children, onClear, onApply }) => {
-  const { translations } = useLanguage();
+  const { translations, lang } = useLanguage();
 
   return (
     <Drawer
       anchor="bottom"
       open={open}
       onClose={onClose}
-      dir="rtl"
+      dir={lang === "hebrew" ? "rtl" : "ltr"}
       ModalProps={{
         keepMounted: true,
         BackdropProps: {
@@ -37,7 +37,13 @@ const FilterDrawer = ({ open, onClose, title, children, onClear, onApply }) => {
         </Box>
         <Box sx={{ flexGrow: 1, overflowY: "auto", marginTop: 2 }}>{children}</Box>
         <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
-          <Button variant="contained" onClick={onApply}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              onApply();
+              onClose();
+            }}
+          >
             {translations.apply}
           </Button>
         </Box>

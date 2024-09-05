@@ -7,12 +7,12 @@ import TwitterIcon from "@mui/icons-material/X";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import { useTheme } from "@mui/material";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const BottomButtons = ({ eventId }) => {
-  const theme = useTheme();
   const { events } = useContext(EventContext);
   const event = events.find((e) => e.id === eventId);
+  const { translations, lang } = useLanguage();
   const [open, setOpen] = useState(false);
   if (!event) {
     return <div>Event not found</div>;
@@ -54,10 +54,10 @@ const BottomButtons = ({ eventId }) => {
         startIcon={<ShareOutlinedIcon style={{ fontSize: "14px" }} />}
         sx={{ gap: 1, fontSize: "13px" }}
       >
-        שיתוף אירוע
+        {translations.shareEvent}
       </Button>
-      <Dialog dir="rtl" open={open} onClose={handleClose}>
-        <DialogTitle>שיתוף</DialogTitle>
+      <Dialog dir={lang === "hebrew" ? "rtl" : "ltr"} open={open} onClose={handleClose}>
+        <DialogTitle>{translations.share}</DialogTitle>
         <DialogContent>
           <Box display="flex" justifyContent="center" alignItems="center">
             <IconButton onClick={() => handleShare(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`)}>
@@ -76,7 +76,7 @@ const BottomButtons = ({ eventId }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            סגור
+            {translations.close}
           </Button>
         </DialogActions>
       </Dialog>
@@ -86,7 +86,7 @@ const BottomButtons = ({ eventId }) => {
         startIcon={<ViewListIcon style={{ fontSize: "18px" }} />}
         sx={{ gap: 1, fontSize: "13px" }}
       >
-        הוספה ליומן
+        {translations.addToCalendar}
       </Button>
     </Box>
   );

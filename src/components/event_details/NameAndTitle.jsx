@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { Box, Typography, IconButton, responsiveFontSizes } from "@mui/material";
 import { EventContext } from "../../contexts/EventContext";
 import { SocialMediaIcons } from "../../constants/enums";
-import { BATCH_SIZE } from "marker-clusterer-plus";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const NameAndTitle = ({ eventId }) => {
   const { events } = useContext(EventContext);
   const event = events.find((e) => e.id === eventId);
+  const { lang } = useLanguage();
 
   const defaultImageUrl =
     "https://firebasestorage.googleapis.com/v0/b/yotzim-basalon-dev.appspot.com/o/general_images%2Fbackground_lg.jpg?alt=media&token=0b9a652b-07cd-445a-87b6-ae736a084a37";
@@ -94,7 +95,7 @@ const NameAndTitle = ({ eventId }) => {
             // lineHeight: "normal", // ניתן לשחק עם ערך זה כדי ליישר לפי הגובה הרגיל
           }}
         >
-          {event.lecturer.name.hebrew}
+          {event.lecturer.name[lang]}
         </Typography>
         <Typography
           sx={{
@@ -104,7 +105,7 @@ const NameAndTitle = ({ eventId }) => {
             // lineHeight: "normal", // ניתן לשחק עם ערך זה כדי ליישר לפי הגובה הרגיל
           }}
         >
-          {event.title.hebrew}
+          {event.title[lang]}
         </Typography>
       </Box>
     </Box>
