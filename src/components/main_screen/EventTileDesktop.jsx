@@ -29,7 +29,7 @@ const EventTileDesktop = ({ eventId }) => {
     navigate(`/event/${event.id}`);
   };
   return (
-    <Card sx={{ borderRadius: "8px", border: "1px solid #3F1E5B", boxShadow: "none", height: "320px" }}>
+    <Card aria-label="event card" sx={{ borderRadius: "8px", border: "1px solid #3F1E5B", boxShadow: "none", height: "320px" }}>
       <CardActionArea onClick={handleCardClick}>
         <CardMedia
           component="img"

@@ -14,7 +14,11 @@ export const LanguageProvider = ({ children }) => {
   };
   const lang = language === "en" ? "english" : "hebrew";
 
-  return <LanguageContext.Provider value={{ language, translations, toggleLanguage, lang }}>{children}</LanguageContext.Provider>;
+  return (
+    <LanguageContext.Provider value={{ language, translations, toggleLanguage, lang, setLanguage, setTranslations }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };
 
 export const useLanguage = () => useContext(LanguageContext);

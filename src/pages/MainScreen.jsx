@@ -50,6 +50,7 @@ import TimeFilterDrawer from "../filters/TimeFilterDrawer";
 import LocationFilterDrawer from "../filters/LocationFilterDrawer";
 import LanguageFilterDrawer from "../filters/LanguageFilterDrawer";
 import { FilterType } from "../constants/enums";
+import { resetApp } from "../utils/resetApp";
 
 const MainScreen = () => {
   // Access the current theme and check if the screen is mobile-sized
@@ -57,14 +58,19 @@ const MainScreen = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Access language translations and current language direction (RTL or LTR)
-  const { translations, lang } = useLanguage();
+  const { translations, lang, setLanguage, setTranslations } = useLanguage();
 
   // State to track which filter drawer is currently open and whether to show the map or list view
   const [activeFilter, setActiveFilter] = useState(null);
   const [showMap, setShowMap] = useState(false);
 
   // Hook for managing event filtering and searching
-  const { searchQuery, handleSearch, tempFilters, handleFilterChange, handleSaveFilter, handleClearFilter, filteredEvents } = useEventFilters();
+  const { searchQuery, handleSearch, tempFilters, handleFilterChange, handleSaveFilter, handleClearFilter, filteredEvents, handleResetFilters } =
+    useEventFilters();
+
+  const handleResetApp = () => {
+    resetApp(handleResetFilters, setShowMap, setLanguage, setTranslations);
+  };
 
   /**
    * Opens a specific filter drawer.
@@ -91,7 +97,7 @@ const MainScreen = () => {
       {isMobile ? (
         <AppBarMobile searchQuery={searchQuery} handleSearch={handleSearch} handleOpenFilter={handleOpenFilter} />
       ) : (
-        <AppBarDesktop searchQuery={searchQuery} handleSearch={handleSearch} handleOpenFilter={handleOpenFilter} />
+        <AppBarDesktop searchQuery={searchQuery} handleSearch={handleSearch} handleOpenFilter={handleOpenFilter} handleResetApp={handleResetApp} />
       )}
 
       {/* Filter drawer for applying or clearing filters */}

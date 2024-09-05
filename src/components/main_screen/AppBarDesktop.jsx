@@ -4,13 +4,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import LanguageToggle from "../LanguageToggle";
 import { useLanguage } from "../../contexts/LanguageContext";
 
-const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter }) => {
+const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter, handleResetApp }) => {
   const { translations } = useLanguage();
   return (
     <AppBar position="fixed" color="default">
       <Toolbar>
         <Box display="flex" justifyContent="space-between" alignItems="center" width="100%">
-          <IconButton aria-label="logo">
+          <IconButton onClick={handleResetApp} aria-label="logo">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/yotzim-basalon-dev.appspot.com/o/general_images%2Ftitle_app.png?alt=media&token=56ccf286-4be4-4891-b91e-1a2c536ff64e"
               alt="logo"

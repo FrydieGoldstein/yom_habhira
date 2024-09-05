@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useApiIsLoaded } from "@vis.gl/react-google-maps";
+import PinIconPng from "../assets/map-point.png";
 
 const MapComponent = ({ events, onMarkerClick, onMapClick }) => {
   const mapRef = useRef(null);
@@ -20,14 +21,19 @@ const MapComponent = ({ events, onMarkerClick, onMapClick }) => {
       });
 
       events.forEach((event) => {
+        const pinIconImg = document.createElement("img");
+        pinIconImg.style.width = "40px";
+        pinIconImg.style.height = "40px";
+        pinIconImg.src = PinIconPng;
         const position = new window.google.maps.LatLng(event.target?.lat, event.target?.long);
         bounds.extend(position);
-        const marker = new AdvancedMarkerElement({
+        const pinIconImgMarkerView = new AdvancedMarkerElement({
           position,
           map,
-          title: event.title?.hebrew,
+          title: "map-pin",
+          content: pinIconImg,
         });
-        marker.addListener("click", () => onMarkerClick(event));
+        pinIconImgMarkerView.addListener("click", () => onMarkerClick(event));
       });
 
       map.addListener("click", () => {
