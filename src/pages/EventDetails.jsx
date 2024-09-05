@@ -1,19 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { EventContext } from "../contexts/EventContext";
 import { Box, Typography, Grid, AppBar, Toolbar, IconButton, useMediaQuery } from "@mui/material";
 import YouTubePlayer from "../components/event_details/YouTubePlayer";
 import EventDetailsViewMobile from "../components/event_details/mobile/EventDetailsViewMobile";
-import NameAndTitle from "../components/event_details/NameAndTitle";
 import { SocialMediaIcons } from "../constants/enums";
 import TimeAndAddress from "../components/event_details/TimeAndAddress";
 import { renderEventStatus } from "../utils/eventStatusUtil";
 import { grey } from "@mui/material/colors";
 import Tags from "../components/event_details/Tags";
 import BottomButtons from "../components/event_details/BottomButtons";
-import GBFlag from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/assets/gb-flag.png";
-import ILFlag from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/assets/il-flag.png";
 import { useTheme } from "@mui/material/styles";
+import { useLanguage } from "../contexts/LanguageContext";
+import LanguageToggle from "../components/LanguageToggle";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -22,6 +21,11 @@ const EventDetails = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const language = "en";
+  const { translations, lang } = useLanguage();
+
+  useEffect(() => {
+    document.title = "Event Details";
+  }, []);
 
   if (!event) {
     return <div>Event not found</div>;
@@ -50,7 +54,7 @@ const EventDetails = () => {
   });
 
   return (
-    <Box dir="rtl" style={{ padding: "20px" }}>
+    <Box dir={lang === "hebrew" ? "rtl" : "ltr"} style={{ padding: "20px" }}>
       <AppBar position="fixed" color="default">
         <Toolbar>
           <Box display="flex" alignItems="center" width="100%" justifyContent="space-between">
@@ -63,10 +67,7 @@ const EventDetails = () => {
             </IconButton>
 
             <Box display="flex" justifyContent="end" width="150px">
-              {/* לבדוק את העניין עם הרוחב אם להוסיף גם ללוגו */}
-              <IconButton onClick={() => {}} aria-label="language-toggle">
-                <img src={language === "en" ? GBFlag : ILFlag} alt="language flag" style={{ height: 20, width: 25 }} />
-              </IconButton>
+              <LanguageToggle />
             </Box>
           </Box>
         </Toolbar>
@@ -77,7 +78,7 @@ const EventDetails = () => {
         <Box display="flex" flexDirection="column" sx={{ margin: "80px" }}>
           <Box>
             <Typography fontSize="18px" fontWeight="500" marginBottom="10px" marginRight="5px">
-              {event.lecturer.name.hebrew} - {event.title.hebrew}
+              {event.lecturer.name[lang]} - {event.title[lang]}
             </Typography>
           </Box>
           <Box display="flex" flexWrap="wrap" alignItems="stretch" gap="30px" justifyContent="flex-start" mb="10px">
@@ -97,9 +98,9 @@ const EventDetails = () => {
               sx={{ borderRadius: "25px", border: "1px solid", overflow: "hidden" }}
             >
               <Box display="flex" flexDirection="column" justifyContent="space-between" height="40%">
-                {renderEventStatus(event) && (
+                {renderEventStatus(event, translations) && (
                   <Typography alignSelf="center" sx={{ fontSize: "13px", color: grey[700] }}>
-                    {renderEventStatus(event)}
+                    {renderEventStatus(event, translations)}
                   </Typography>
                 )}
                 <TimeAndAddress eventId={event.id} />
@@ -133,9 +134,9 @@ const EventDetails = () => {
               />
             </Box>
             <Box display="flex" flexDirection="column">
-              <Typography fontSize="13px">{event.lecturer.name.hebrew}</Typography>
+              <Typography fontSize="13px">{event.lecturer.name[lang]}</Typography>
               <Box display="flex" gap="3px">
-                <Typography fontSize="13px"> עקבו אחריי </Typography>
+                <Typography fontSize="13px"> {translations.followMe}</Typography>
                 {socialMediaIcons}
               </Box>
             </Box>
@@ -153,7 +154,7 @@ const EventDetails = () => {
               mb: "15px",
             }}
           >
-            {event.description.hebrew}
+            {event.description[lang]}
           </Typography>
           <Tags eventId={event.id} />
         </Box>

@@ -7,11 +7,13 @@ import NameAndTitle from "../../../components/event_details/NameAndTitle";
 import TimeAndAddress from "../../../components/event_details/TimeAndAddress";
 import Tags from "../../../components/event_details/Tags";
 import BottomButtons from "../../../components/event_details/BottomButtons";
+import { useLanguage } from "../../../contexts/LanguageContext.js";
 
 const EventDetailsViewMobile = () => {
   const { id } = useParams();
   const { events } = useContext(EventContext);
   const event = events.find((e) => e.id === id);
+  const { lang } = useLanguage();
 
   if (!event) {
     return <div>Event not found</div>;
@@ -50,7 +52,7 @@ const EventDetailsViewMobile = () => {
             // textOverflow: "ellipsis",
           }}
         >
-          {event.description.hebrew}
+          {event.description[lang]}
         </Typography>
 
         <Tags eventId={event.id} />

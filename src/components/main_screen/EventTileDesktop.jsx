@@ -4,15 +4,17 @@ import { renderEventStatus } from "../../utils/eventStatusUtil";
 import { Card, Divider, CardMedia, CardContent, Typography, Grid, CardActionArea, CardActions, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { EventContext } from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/contexts/EventContext";
-import Tags from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/components/event_details/Tags";
+import { EventContext } from "../../contexts/EventContext";
+import Tags from "../../components/event_details/Tags";
 import { grey } from "@mui/material/colors";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const EventTileDesktop = ({ eventId }) => {
   const { events } = useContext(EventContext);
   const event = events.find((e) => e.id === eventId);
   const navigate = useNavigate();
   const theme = useTheme();
+  const { translations, lang } = useLanguage();
 
   const { formattedDate: startFormattedDate, formattedTime: startFormattedTime } = useFormattedDate(event ? event.startTime : null);
 
@@ -43,8 +45,10 @@ const EventTileDesktop = ({ eventId }) => {
         <CardContent flex={1} sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "70px" }}>
           <Box sx={{ height: "50px", marginTop: "0px" }}>
             <Box display="flex" justifyContent="space-between">
-              <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{event.lecturer.name.hebrew}</Typography>
-              {renderEventStatus(event) && <Typography sx={{ fontSize: "11px", color: grey[700] }}>{renderEventStatus(event)}</Typography>}
+              <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{event.lecturer.name[lang]}</Typography>
+              {renderEventStatus(event, translations) && (
+                <Typography sx={{ fontSize: "11px", color: grey[700] }}>{renderEventStatus(event, translations)}</Typography>
+              )}
             </Box>
             <Typography sx={{ fontSize: "9px", fontWeight: "400" }}>
               {startFormattedDate} · {startFormattedTime}
@@ -62,7 +66,7 @@ const EventTileDesktop = ({ eventId }) => {
                 color: grey[400],
               }}
             >
-              {event.description.hebrew}
+              {event.description[lang]}
             </Typography>
           </Box>
         </CardContent>

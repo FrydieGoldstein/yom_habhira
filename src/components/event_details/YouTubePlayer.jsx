@@ -2,9 +2,10 @@ import { min } from "date-fns";
 import React, { useState, useEffect, useCallback } from "react";
 import { Box } from "@mui/material";
 import YouTube from "react-youtube";
-import { alignProperty } from "@mui/material/styles/cssUtils";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 function YouTubePlayer({ videoId, isMobile = false }) {
+  const { translations } = useLanguage();
   const [playerStatus, setPlayerStatus] = useState("loading");
 
   const checkLiveStatus = useCallback(async () => {
@@ -41,9 +42,9 @@ function YouTubePlayer({ videoId, isMobile = false }) {
   if (playerStatus === "ended") {
     return (
       <Box display="flex" justifyContent="center" padding="20px">
-        השידור החי הסתיים. לצפייה בוידאו, אנא עברו ל
+        {translations.broadcastEndedRefraim}
         <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
-          ערוץ היוטיוב שלנו
+          {translations.youTubeChannel}
         </a>
       </Box>
     );
@@ -52,7 +53,7 @@ function YouTubePlayer({ videoId, isMobile = false }) {
   if (playerStatus === "error") {
     return (
       <Box display="flex" justifyContent="center" padding="20px">
-        אירעה שגיאה בטעינת השידור החי. אנא נסו שוב מאוחר יותר.
+        {translations.broadcastError}
       </Box>
     );
   }

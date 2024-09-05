@@ -41,10 +41,18 @@ const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter }) => {
               }}
             />
             <Box display="flex">
-              <Button onClick={() => handleOpenFilter(translations.topics)}>{translations.topics}</Button>
-              <Button onClick={() => handleOpenFilter(translations.time)}>{translations.time}</Button>
-              <Button onClick={() => handleOpenFilter(translations.location)}>{translations.location}</Button>
-              <Button onClick={() => handleOpenFilter(translations.language)}>{translations.language}</Button>
+              <Button aria-label="topics filter button" onClick={() => handleOpenFilter(translations.topics)}>
+                {translations.topics}
+              </Button>
+              <Button aria-label="time filter button" onClick={() => handleOpenFilter(translations.time)}>
+                {translations.time}
+              </Button>
+              <Button aria-label="location filter button" onClick={() => handleOpenFilter(translations.location)}>
+                {translations.location}
+              </Button>
+              <Button aria-label="language filter button" onClick={() => handleOpenFilter(translations.language)}>
+                {translations.language}
+              </Button>
             </Box>
           </Box>
           <Box display="flex" justifyContent="end" width="150px">

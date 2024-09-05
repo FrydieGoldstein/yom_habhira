@@ -4,6 +4,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GroupsIcon from "@mui/icons-material/Groups";
 import XIcon from "@mui/icons-material/X";
 import LanguageIcon from "@mui/icons-material/Language";
+import { Tag } from "@mui/icons-material";
 
 export const SocialMediaIcons = {
   facebook: FacebookIcon,
@@ -20,12 +21,19 @@ export const EventType = {
   HYBRID: "hybrid",
 };
 
+export const FilterType = {
+  TOPICS: "tags",
+  TIME: "times",
+  LOCATION: "location",
+  LANGUAGE: "languages",
+};
+
 // export const Language = ["hebrew", "english"];
 
-export const Language = {
-  hebrew: "עברית",
-  english: "אנגלית",
-};
+// export const Language = {
+//   hebrew: "עברית",
+//   english: "אנגלית",
+// };
 
 // export const Cities = {
 //   TELAVIV: "תל אביב",

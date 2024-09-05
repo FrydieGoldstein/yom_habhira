@@ -28,7 +28,7 @@ const LanguageFilterDrawer = ({ onLanguageChange, selectedLanguage }) => {
             },
           }}
         >
-          {translations[key]} {/* הצגת התווית המתורגמת */}
+          {translations[key]}
         </Button>
       ))}
     </Box>
