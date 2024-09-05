@@ -47,8 +47,30 @@ export const useEventFilters = () => {
     }
   };
 
+  const handleResetFilters = () => {
+    // איפוס שורת החיפוש
+    setSearchQuery("");
+
+    // איפוס כל הסינונים
+    setTempFilters({
+      tags: [],
+      times: [],
+      languages: [],
+      location: [],
+    });
+
+    // שמירת הסינונים המאופסים
+    setFilters({
+      tags: [],
+      times: [],
+      languages: [],
+      location: [],
+    });
+  };
+
   const filteredEvents = events.filter((event) => {
     const matchesSearch =
+      searchQuery === "" ||
       event.title[lang].toLowerCase().includes(searchQuery) ||
       event.lecturer.name[lang].toLowerCase().includes(searchQuery) ||
       event.address.city[lang].toLowerCase().includes(searchQuery) ||
@@ -108,5 +130,6 @@ export const useEventFilters = () => {
     handleSaveFilter,
     handleClearFilter,
     filteredEvents,
+    handleResetFilters,
   };
 };
