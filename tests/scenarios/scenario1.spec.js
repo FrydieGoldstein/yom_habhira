@@ -1,11 +1,11 @@
 // scenari1
 
 import { test, expect } from "@playwright/test";
-import { runVisualTests } from "../pages/main-screen/mainScreenTests.spec";
+// import { runVisualTests } from "../pages/main-screen/mainScreenTests.spec";
 import { en } from "../../src/constants/En";
 import { getTranslations } from "../../src/utils/i18n";
 import { fetchTags, fetchOrFilterEventsByTags } from "../test-utils/firebaseFuncs";
-import { checkButtonVisibility, checkEventCount } from "../pages/main-screen/mainScreenVisualTests";
+import { checkButtonVisibility, checkEventCount, checkSearchBar } from "../pages/main-screen/mainScreenVisualTests";
 import { checkDrawerOpens } from "../pages/main-screen/mainScreenFunctionalTests";
 import { locators } from "../test-utils/locators";
 import { hexToRgba } from "../test-utils/utils";
@@ -64,7 +64,21 @@ test.describe("scenario number 1", () => {
   test("Complete scenario flow without refreshing the page", async ({ page }) => {
     // Step 1: User enters the web - all elements are visible
     await test.step("Display all elements on the main screen", async () => {
-      await runVisualTests(page, lang);
+      // await runVisualTests(page, lang);
+      const translations = getTranslations(language);
+      const result = await fetchOrFilterEventsByTags();
+
+      // Check the search bar
+      await checkSearchBar(page, translations);
+
+      // Check filter buttons
+      await checkButtonVisibility(locators.filterButton(page, en.topics.toLowerCase()), translations.topics);
+      await checkButtonVisibility(locators.filterButton(page, en.time.toLowerCase()), translations.time);
+      await checkButtonVisibility(locators.filterButton(page, en.location.toLowerCase()), translations.location);
+      await checkButtonVisibility(locators.filterButton(page, en.language.toLowerCase()), translations.language);
+
+      // Check the number of events displayed
+      await checkEventCount(page, result.length);
     });
 
     // Step 2: User clicks on the topics filter button
