@@ -1,7 +1,9 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 const FilterButtons = ({ handleOpenFilter }) => {
+  const { translations } = useLanguage();
   return (
     <Box
       sx={{
@@ -11,10 +13,10 @@ const FilterButtons = ({ handleOpenFilter }) => {
         justifyContent: "center",
       }}
     >
-      <Button onClick={() => handleOpenFilter("נושאי שיחה")}>נושאי שיחה</Button>
-      <Button onClick={() => handleOpenFilter("זמן")}>זמן</Button>
-      <Button onClick={() => handleOpenFilter("מיקום")}>מיקום</Button>
-      <Button onClick={() => handleOpenFilter("שפת הרצאה")}>שפת הרצאה</Button>
+      <Button onClick={() => handleOpenFilter(translations.topics)}>{translations.topics}</Button>
+      <Button onClick={() => handleOpenFilter(translations.time)}>{translations.time}</Button>
+      <Button onClick={() => handleOpenFilter(translations.location)}>{translations.location}</Button>
+      <Button onClick={() => handleOpenFilter(translations.language)}>{translations.language}</Button>
     </Box>
   );
 };

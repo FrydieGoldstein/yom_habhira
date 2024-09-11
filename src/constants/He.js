@@ -26,6 +26,8 @@ export const he = {
   broadcastError: "אירעה שגיאה בטעינת השידור החי. אנא נסו שוב מאוחר יותר.",
   broadcastEndedRefraim: "השידור החי הסתיים. לצפייה בוידאו, אנא עברו ל",
   youTubeChannel: "ערוץ היוטיוב שלנו",
+  filterDrawerBy: "חלון סינון אירועים לפי",
+  filterButtonBy: "כפתור סינון לפי",
   // lecturer: "מרצה",
   // tags: "תגיות",
   // description: "תיאור",
