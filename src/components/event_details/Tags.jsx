@@ -15,7 +15,7 @@ const Tags = ({ eventId }) => {
   return (
     <div>
       {event.tags.map((tag, index) => (
-        <Button key={index} onClick={() => console.log("clicked")}>
+        <Button key={index} onClick={() => console.log("clicked")} data-testid={`topics-button-${tag.title.english}`}>
           {tag.title[lang]}
         </Button>
       ))}

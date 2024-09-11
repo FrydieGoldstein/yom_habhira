@@ -21,9 +21,9 @@ const BottomButtons = ({ eventId }) => {
   const createGoogleCalendarEventUrl = () => {
     const startTime = new Date(event.startTime).toISOString().replace(/-|:|\.\d\d\d/g, "");
     const endTime = new Date(event.endTime).toISOString().replace(/-|:|\.\d\d\d/g, "");
-    const details = encodeURIComponent(event.description.hebrew);
-    const location = encodeURIComponent(`${event.address.street.hebrew} ${event.address.number}, ${event.address.city.hebrew}`);
-    const title = encodeURIComponent(event.title.hebrew);
+    const details = encodeURIComponent(event.description[lang]);
+    const location = encodeURIComponent(`${event.address.street[lang]} ${event.address.number}, ${event.address.city[lang]}`);
+    const title = encodeURIComponent(event.title[lang]);
 
     return `https://calendar.google.com/calendar/r/eventedit?text=${title}&dates=${startTime}/${endTime}&details=${details}&location=${location}`;
   };

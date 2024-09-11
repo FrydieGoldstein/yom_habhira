@@ -51,6 +51,7 @@ import LocationFilterDrawer from "../filters/LocationFilterDrawer";
 import LanguageFilterDrawer from "../filters/LanguageFilterDrawer";
 import { FilterType } from "../constants/enums";
 import { resetApp } from "../utils/resetApp";
+import { getFilterTypeTestId } from "../utils/getFilterTypeTestId";
 
 const MainScreen = () => {
   // Access the current theme and check if the screen is mobile-sized
@@ -105,6 +106,7 @@ const MainScreen = () => {
         open={activeFilter !== null}
         onClose={handleCloseFilter}
         title={activeFilter ? `${translations.filterBy} ${activeFilter}` : ""}
+        testId={`${getFilterTypeTestId(activeFilter, translations)}-filter-drawer`}
         onClear={() => handleClearFilter(activeFilter)}
         onApply={handleSaveFilter}
       >

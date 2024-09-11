@@ -21,7 +21,8 @@ const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter, handleRese
             <InputBase
               // width="100%"
               placeholder={translations.searchPlaceholder}
-              inputProps={{ "aria-label": "search" }}
+              inputProps={{ "aria-label": `${translations.searchPlaceholder}`, "data-testid": "search-input" }}
+              data-testid="search-box"
               value={searchQuery}
               onChange={handleSearch}
               endAdornment={
@@ -41,16 +42,32 @@ const AppBarDesktop = ({ searchQuery, handleSearch, handleOpenFilter, handleRese
               }}
             />
             <Box display="flex">
-              <Button aria-label="topics filter button" onClick={() => handleOpenFilter(translations.topics)}>
+              <Button
+                data-testid="topics-filter-button"
+                aria-label={`${translations.filterButtonBy} ${translations.topics}`}
+                onClick={() => handleOpenFilter(translations.topics)}
+              >
                 {translations.topics}
               </Button>
-              <Button aria-label="time filter button" onClick={() => handleOpenFilter(translations.time)}>
+              <Button
+                data-testid="time-filter-button"
+                aria-label={`${translations.filterButtonBy} ${translations.time}`}
+                onClick={() => handleOpenFilter(translations.time)}
+              >
                 {translations.time}
               </Button>
-              <Button aria-label="location filter button" onClick={() => handleOpenFilter(translations.location)}>
+              <Button
+                data-testid="location-filter-button"
+                aria-label={`${translations.filterButtonBy} ${translations.location}`}
+                onClick={() => handleOpenFilter(translations.location)}
+              >
                 {translations.location}
               </Button>
-              <Button aria-label="language filter button" onClick={() => handleOpenFilter(translations.language)}>
+              <Button
+                data-testid="language-filter-button"
+                aria-label={`${translations.filterButtonBy} ${translations.language}`}
+                onClick={() => handleOpenFilter(translations.language)}
+              >
                 {translations.language}
               </Button>
             </Box>

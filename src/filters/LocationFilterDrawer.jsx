@@ -1,7 +1,10 @@
+// Location filter drawer component
+
 import React, { useMemo, useContext } from "react";
 import { Button, Box, Checkbox, FormControlLabel } from "@mui/material";
 import { useLanguage } from "../contexts/LanguageContext";
 import { EventContext } from "../contexts/EventContext";
+import { en } from "../constants/En";
 
 const LocationFilterDrawer = ({ onLocationChange, selectedLocation }) => {
   selectedLocation = selectedLocation || [];
@@ -59,7 +62,7 @@ const LocationFilterDrawer = ({ onLocationChange, selectedLocation }) => {
   return (
     <Box display="flex" alignItems="flex-start" flexDirection="column" sx={{ width: "auto", padding: 2 }}>
       <FormControlLabel
-        control={<Checkbox checked={allCitiesSelected} onChange={handleSelectAllCities} />}
+        control={<Checkbox checked={allCitiesSelected} onChange={handleSelectAllCities} data-testid={`checkbox-${en.israel.toLowerCase()}`} />}
         label={translations.israel}
         sx={{ marginBottom: 2 }}
       />
@@ -69,6 +72,7 @@ const LocationFilterDrawer = ({ onLocationChange, selectedLocation }) => {
             key={city}
             onClick={() => handleToggle(city)}
             variant="outlined"
+            data-testid={`${en.location.toLowerCase()}-button-${city}`}
             sx={{
               margin: 1,
               backgroundColor: selectedLocation.includes(city) ? "secondary.main" : "inherit",
@@ -83,7 +87,9 @@ const LocationFilterDrawer = ({ onLocationChange, selectedLocation }) => {
         ))}
       </Box>
       <FormControlLabel
-        control={<Checkbox checked={allCountriesSelected} onChange={handleSelectAllCountries} />}
+        control={
+          <Checkbox checked={allCountriesSelected} onChange={handleSelectAllCountries} data-testid={`checkbox-${en.restOfTheWorld.toLowerCase()}`} />
+        }
         label={translations.restOfTheWorld}
         sx={{ marginY: 2 }}
       />
@@ -93,6 +99,7 @@ const LocationFilterDrawer = ({ onLocationChange, selectedLocation }) => {
             key={country}
             onClick={() => handleToggle(country)}
             variant="outlined"
+            data-testid={`${en.location.toLowerCase()}-button-${country}`}
             sx={{
               margin: 1,
               backgroundColor: selectedLocation.includes(country) ? "secondary.main" : "inherit",

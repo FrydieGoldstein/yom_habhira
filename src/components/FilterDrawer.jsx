@@ -1,9 +1,10 @@
+//filter drawer
 import React from "react";
 import { Drawer, IconButton, Button, Box, Typography, ButtonBase } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLanguage } from "../contexts/LanguageContext";
 
-const FilterDrawer = ({ open, onClose, title, children, onClear, onApply }) => {
+const FilterDrawer = ({ open, onClose, title, testId, children, onClear, onApply }) => {
   const { translations, lang } = useLanguage();
 
   return (
@@ -11,6 +12,8 @@ const FilterDrawer = ({ open, onClose, title, children, onClear, onApply }) => {
       anchor="bottom"
       open={open}
       onClose={onClose}
+      aria-label={`${translations.filterDrawerBy} ${title}`}
+      data-testid={testId}
       dir={lang === "hebrew" ? "rtl" : "ltr"}
       ModalProps={{
         keepMounted: true,
@@ -27,13 +30,16 @@ const FilterDrawer = ({ open, onClose, title, children, onClear, onApply }) => {
         },
       }}
     >
+      {/* {console.log(testId)} */}
       <Box sx={{ padding: 2, display: "flex", flexDirection: "column", height: "100%" }}>
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <IconButton aria-label="close" onClick={onClose}>
+          <IconButton aria-label={translations.onClose} onClick={onClose} data-testid="close-button">
             <CloseIcon />
           </IconButton>
           <Typography variant="h6">{title}</Typography>
-          <ButtonBase onClick={onClear}>{translations.clear}</ButtonBase>
+          <ButtonBase onClick={onClear} data-testid="clear-button">
+            {translations.clear}
+          </ButtonBase>
         </Box>
         <Box sx={{ flexGrow: 1, overflowY: "auto", marginTop: 2 }}>{children}</Box>
         <Box sx={{ display: "flex", justifyContent: "center", marginTop: 2 }}>
@@ -43,6 +49,7 @@ const FilterDrawer = ({ open, onClose, title, children, onClear, onApply }) => {
               onApply();
               onClose();
             }}
+            data-testid="apply-button"
           >
             {translations.apply}
           </Button>
