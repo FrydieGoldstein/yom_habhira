@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import useFormattedDate from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/hooks/useFormattedDate";
+import useFormattedDate from "../../hooks/useFormattedDate";
 import { renderEventStatus } from "../../utils/eventStatusUtil";
-import { Card, Divider, CardMedia, CardContent, Typography, Grid, CardActionArea, CardActions, Box } from "@mui/material";
+import { Card, Divider, CardMedia, CardContent, Typography, CardActionArea, CardActions, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { EventContext } from "../../contexts/EventContext";

@@ -3,7 +3,7 @@ import EventDetails from "../EventDetails";
 import { LanguageProvider } from "../../contexts/LanguageContext";
 import { EventContext } from "../../contexts/EventContext";
 import "@testing-library/jest-dom";
-import { Description } from "@mui/icons-material";
+import React from "react";
 
 // Mocking react-router's useParams to return the correct event id
 jest.mock("react-router-dom", () => ({

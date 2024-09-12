@@ -1,6 +1,7 @@
 import { render, fireEvent } from "@testing-library/react";
 import { LanguageProvider, useLanguage } from "../../contexts/LanguageContext";
 import LanguageToggle from "../../components/LanguageToggle";
+import React from "react";
 
 test("toggles language when clicked", () => {
   const { getByRole } = render(

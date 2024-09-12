@@ -2,6 +2,7 @@ import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import AppBarDesktop from "../AppBarDesktop";
 import { LanguageProvider } from "../../../contexts/LanguageContext";
+import React from "react";
 
 test("AppBarDesktop updates button texts after language toggle", () => {
   const { getByRole } = render(

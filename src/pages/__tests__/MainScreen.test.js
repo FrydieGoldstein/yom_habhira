@@ -1,8 +1,9 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import MainScreen from "../MainScreen";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useEventFilters } from "../../hooks/useEventFilters";
 import "@testing-library/jest-dom";
+import React from "react";
 
 // Mocking contexts
 jest.mock("../../contexts/LanguageContext", () => ({

@@ -3,6 +3,7 @@ import { useLanguage } from "../../../contexts/LanguageContext";
 import { EventContext } from "../../../contexts/EventContext";
 import TimeAndAddress from "../TimeAndAddress";
 import "@testing-library/jest-dom";
+import React from "react";
 
 // Mocking useLanguage hook
 jest.mock("../../../contexts/LanguageContext", () => ({
