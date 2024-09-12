@@ -1,4 +1,4 @@
-exports = {
+export default {
   testMatch: ["<rootDir>/src/**/__tests__/**/*.[jt]s?(x)"],
   transform: {
     "^.+\\.[tj]sx?$": "babel-jest",
@@ -6,6 +6,10 @@ exports = {
   moduleFileExtensions: ["js", "jsx", "ts", "tsx", "json"],
   collectCoverage: true,
   coverageDirectory: "coverage",
+  testPathIgnorePatterns: [
+    "<rootDir>/tests/", // התעלם מתיקיית tests של Playwright
+    "<rootDir>/node_modules/", // התעלמות גם מ-node_modules
+  ],
 };
 
 // /**
