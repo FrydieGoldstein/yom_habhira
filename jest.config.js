@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   testMatch: ["<rootDir>/src/**/__tests__/**/*.[jt]s?(x)"],
   transform: {
     "^.+\\.[tj]sx?$": "babel-jest",
