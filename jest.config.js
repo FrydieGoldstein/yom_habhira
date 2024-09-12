@@ -6,10 +6,11 @@ module.exports = {
   moduleFileExtensions: ["js", "jsx", "ts", "tsx", "json"],
   collectCoverage: true,
   coverageDirectory: "coverage",
-  testPathIgnorePatterns: [
-    "<rootDir>/tests/", // התעלם מתיקיית tests של Playwright
-    "<rootDir>/node_modules/", // התעלמות גם מ-node_modules
-  ],
+  testPathIgnorePatterns: ["<rootDir>/tests/", "<rootDir>/node_modules/"],
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+    "\\.(css|less)$": "identity-obj-proxy",
+  },
 };
 
 // /**
