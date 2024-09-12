@@ -1,7 +1,11 @@
 module.exports = {
+  testMatch: ["<rootDir>/src/**/__tests__/**/*.[jt]s?(x)"],
+  transform: {
+    "^.+\\.[tj]sx?$": "babel-jest",
+  },
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx", "json"],
   collectCoverage: true,
   coverageDirectory: "coverage",
-  testEnvironment: "node",
 };
 
 // /**
