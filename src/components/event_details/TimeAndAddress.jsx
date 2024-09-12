@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { EventContext } from "../../contexts/EventContext";
 import useFormattedDate from "../../hooks/useFormattedDate";
 import ScheduleIcon from "@mui/icons-material/Schedule";

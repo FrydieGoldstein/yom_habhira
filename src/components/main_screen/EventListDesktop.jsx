@@ -5,11 +5,12 @@ import EventTileDesktop from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_re
 const EventListDesktop = ({ events }) => {
   return (
     <Grid container spacing={3} style={{ marginTop: "60px" }}>
-      {events.map((event) => (
-        <Grid item xs={3} key={event.id}>
-          <EventTileDesktop eventId={event.id} />
-        </Grid>
-      ))}
+      {events &&
+        events.map((event) => (
+          <Grid item xs={3} key={event.id}>
+            <EventTileDesktop eventId={event.id} />
+          </Grid>
+        ))}
     </Grid>
   );
 };
