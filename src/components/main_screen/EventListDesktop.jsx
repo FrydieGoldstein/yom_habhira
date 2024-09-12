@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import EventTileDesktop from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/components/main_screen/EventTileDesktop";
+import EventTileDesktop from "../main_screen/EventTileDesktop";
 
 const EventListDesktop = ({ events }) => {
   return (
