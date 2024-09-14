@@ -21,7 +21,7 @@ const MapView = ({ events }) => {
 
   return (
     <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
-      <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
+      <div data-testid="map-view" style={{ width: "100vw", height: "100vh", position: "relative" }}>
         <MapComponent events={events} onMarkerClick={onMarkerClick} onMapClick={onMapClick} />
         {selectedEvent && (
           <div

@@ -1,15 +1,21 @@
 import React from "react";
 import { IconButton } from "@mui/material";
-import GBFlag from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/assets/gb-flag.png";
-import ILFlag from "C:/Users/Frydie/Desktop/yom_habhira/yom_habhira_react/yom-habhira/src/assets/il-flag.png";
+import GBFlag from "../assets/gb-flag.png";
+import ILFlag from "../assets/il-flag.png";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const LanguageToggle = () => {
   const { language, toggleLanguage } = useLanguage();
+  // console.log("il flag image: ", ILFlag);
+  // console.log("gb flag image: ", GBFlag);
 
   return (
     <IconButton onClick={toggleLanguage} aria-label="language-toggle">
-      <img src={language === "en" ? ILFlag : GBFlag} alt="language flag" style={{ height: 20, width: 25 }} />
+      <img
+        src={language === "he" ? GBFlag : ILFlag}
+        alt={language === "he" ? "language flag - english" : "language flag - hebrew"}
+        style={{ height: 20, width: 25 }}
+      />
     </IconButton>
   );
 };
