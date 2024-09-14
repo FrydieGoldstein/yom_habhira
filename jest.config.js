@@ -9,8 +9,10 @@ module.exports = {
   coverageDirectory: "coverage",
   testPathIgnorePatterns: ["<rootDir>/tests/", "<rootDir>/node_modules/"],
   moduleNameMapper: {
-    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
+    "^../../assets/gb-flag\\.png$": "<rootDir>/__mocks__/gbFlagMock.js",
+    "^../../assets/il-flag\\.png$": "<rootDir>/__mocks__/ilFlagMock.js",
     "\\.(css|less)$": "identity-obj-proxy",
+    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.js",
   },
 };
 

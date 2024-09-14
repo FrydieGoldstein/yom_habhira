@@ -6,10 +6,16 @@ import { useLanguage } from "../contexts/LanguageContext";
 
 const LanguageToggle = () => {
   const { language, toggleLanguage } = useLanguage();
+  // console.log("il flag image: ", ILFlag);
+  // console.log("gb flag image: ", GBFlag);
 
   return (
     <IconButton onClick={toggleLanguage} aria-label="language-toggle">
-      <img src={language === "en" ? ILFlag : GBFlag} alt="language flag" style={{ height: 20, width: 25 }} />
+      <img
+        src={language === "he" ? GBFlag : ILFlag}
+        alt={language === "he" ? "language flag - english" : "language flag - hebrew"}
+        style={{ height: 20, width: 25 }}
+      />
     </IconButton>
   );
 };

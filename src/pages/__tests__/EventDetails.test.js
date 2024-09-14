@@ -9,9 +9,13 @@ import React from "react";
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({
-    id: "1", // זה ה-id של האירוע שנמצא במערך mockEvents
+    id: "1",
   }),
 }));
+
+beforeEach(() => {
+  jest.resetAllMocks(); // Reset mocks before each test
+});
 
 // Mocking event data
 const mockEvents = [

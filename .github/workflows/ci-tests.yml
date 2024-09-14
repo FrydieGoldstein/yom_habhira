@@ -24,19 +24,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # התקנת התלויות
       - name: Install dependencies
         run: npm install
 
-      # בדיקת גרסת Node.js
       - name: Check Node.js version
         run: node -v
 
-      # בדיקת חבילות מותקנות אחרי התקנה
       - name: Check installed packages
         run: npm list --depth=0
 
-      # הרצת בדיקות Jest
       - name: Run Jest tests
         run: npx jest --ci --coverage
 
@@ -47,7 +43,6 @@ jobs:
           path: coverage/
           retention-days: 30
 
-      # הרצת בדיקות Playwright
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
@@ -68,7 +63,6 @@ jobs:
 
       - name: Compress Playwright Report
         run: zip -r playwright-report.zip playwright-report/
-
       - uses: actions/upload-artifact@v3
         if: always()
         with:

@@ -10,6 +10,10 @@ jest.mock("../../../contexts/LanguageContext", () => ({
   useLanguage: jest.fn(),
 }));
 
+beforeEach(() => {
+    jest.resetAllMocks(); // Reset mocks before each test
+  });
+
 // Mocking event data
 const mockEvent = {
   id: 1,
