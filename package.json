@@ -9,7 +9,7 @@
     "@googlemaps/adv-markers-utils": "^1.2.4",
     "@googlemaps/markerclusterer": "^2.5.3",
     "@googlemaps/markerclustererplus": "^1.2.10",
-    "@googlemaps/react-wrapper": "^1.1.35",
+    "@googlemaps/react-wrapper": "^1.1.3.5",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.6",
     "@react-google-maps/api": "^2.19.3",

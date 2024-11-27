@@ -48,10 +48,8 @@ export const useEventFilters = () => {
   };
 
   const handleResetFilters = () => {
-    // איפוס שורת החיפוש
     setSearchQuery("");
 
-    // איפוס כל הסינונים
     setTempFilters({
       tags: [],
       times: [],
@@ -59,7 +57,6 @@ export const useEventFilters = () => {
       location: [],
     });
 
-    // שמירת הסינונים המאופסים
     setFilters({
       tags: [],
       times: [],

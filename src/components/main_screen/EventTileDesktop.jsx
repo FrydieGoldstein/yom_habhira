@@ -45,7 +45,7 @@ const EventTileDesktop = ({ eventId }) => {
         <CardContent flex={1} sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "70px" }}>
           <Box sx={{ height: "50px", marginTop: "0px" }}>
             <Box display="flex" justifyContent="space-between">
-              <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{event.lecturer.name[lang]}</Typography>
+              <Typography sx={{ fontSize: "14px", fontWeight: "600" }}>{event?.lecturer?.name?.[lang] || "Lecturer not available"}</Typography>
               {renderEventStatus(event, translations) && (
                 <Typography sx={{ fontSize: "11px", color: grey[700] }}>{renderEventStatus(event, translations)}</Typography>
               )}
